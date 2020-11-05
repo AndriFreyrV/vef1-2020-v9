@@ -1,4 +1,3 @@
-import { format } from "date-fns";
 
 /**
  * Create an element with attributes and events, and append elements or
@@ -69,5 +68,22 @@ export function el(name, ...children) {
  * @returns {string} Formatted string.
  */
 export function formatDate(timestamp) {
-  // TODO Útfæra með „vanilla JS“ eða nota date-fns pakka
+  let d = new Date(timestamp);
+  let seconds = d.getSeconds();
+  let seconds_string = seconds >=10 ? String(seconds): `0${seconds}`;
+  let day = d.getDate();
+  let day_string = day >=10 ? String(day): `0${day}`;
+  let month = d.getMonth()+1;
+  let month_string = month >=10 ? String(month): `0${month}`;
+  let year = String(d.getFullYear());
+  let hour = d.getHours();
+  let hour_string = hour >=10 ? String(hour): `0${hour}`;
+  let minute = d.getMinutes();
+  let minute_string = minute >=10 ? String(minute): `0${minute}`;
+  let second = d.getSeconds();
+  let secondString = minute >=10 ? String(second): `0${second}`;
+
+
+  return `${day_string}.${month_string}.${year} ${hour_string}:${minute_string}:${secondString}`;
+  
 }
