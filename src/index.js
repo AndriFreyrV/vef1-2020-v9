@@ -7,12 +7,12 @@ import {createPopup, init, addMarker} from './lib/map';
 document.addEventListener('DOMContentLoaded', async () => {
   // Hér er allt „vírað“ saman
   init(document.getElementsByClassName('map')[0]);
-  let map = document.getElementById("mapid");
   const dat = await fetchEarthquakes();
+  document.querySelector('.loading').remove(); // remove loading
   console.log(dat.features);
   for(let f of dat.features){
-    addMarker(f.geometry.coordinates[1],f.geometry.coordinates[0]);
-    console.log(f.properties.mag);
+    const marker = addMarker(f);
+    console.log(marker);
     const eq = el(
       'li',
       el(
@@ -47,7 +47,7 @@ document.addEventListener('DOMContentLoaded', async () => {
           element(
             'button',
             null,
-            {click: () => createPopup(f.geometry.coordinates[1],f.geometry.coordinates[0], `${f.properties.mag} á richter`)},
+            {click: () => createPopup(marker)},
             "Sjá á korti"
           ),
           element(
