@@ -1,11 +1,8 @@
 import L from 'leaflet';
 
-
 let map;
 
 // Býr til popup á korti út frá geojson með content
-
-
 
 // Býr til Leaflet kort og setur miðju á (0, 0) í zoom level 2
 export function init(el) {
@@ -16,22 +13,19 @@ export function init(el) {
   // notað frá Google, mapbox eða fleirum en þyrftum þá aðgang
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     maxZoom: 19,
-    attribution: '&copy; <a href="https://openstreetmap.org/copyright">OpenStreetMap contributors</a>'
+    attribution: '&copy; <a href="https://openstreetmap.org/copyright">OpenStreetMap contributors</a>',
   }).addTo(map);
 }
 
 let marker;
 
-export function addMarker(f){
-  marker = L.marker([f.geometry.coordinates[1],f.geometry.coordinates[0]])
+export function addMarker(f) {
+  marker = L.marker([f.geometry.coordinates[1], f.geometry.coordinates[0]])
     .bindPopup(`M ${f.properties.mag} - ${f.properties.place}`)
     .addTo(map);
-  return marker;  
+  return marker;
 }
 
-export function createPopup(marker) {
-  marker.openPopup();
+export function createPopup(Marker) {
+  Marker.openPopup();
 }
-
-
-
