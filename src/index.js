@@ -32,6 +32,14 @@ function addEarthquakes(f) {
           'dd',
           `${f.properties.mag} á richter`,
         ),
+        el(
+          'dt',
+          'Nánar',
+        ),
+        el(
+          'dd',
+          `${f.properties.url}`,
+        ),
       ),
       element(
         'div',
